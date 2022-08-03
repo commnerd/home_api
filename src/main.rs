@@ -10,17 +10,17 @@ fn rocket() -> _ {
     rocket::build().mount("/", routes![index])
 }
 
-#[cfg(async_test)]
+#[cfg(test)]
 mod test {
     use super::rocket;
-    use rocket::local::Client;
+    use rocket::local::blocking::Client;
     use rocket::http::Status;
 
     #[test]
     fn index() {
-        let client = Client::new(rocket()).expect("valid rocket instance");
-        let mut response = client.get("/").dispatch();
+        let client = Client::untracked(rocket()).expect("valid rocket instance");
+        let response = client.get("/").dispatch();
         assert_eq!(response.status(), Status::Ok);
-        assert_eq!(response.body_string(), Some("Hello, world!".into()));
+        assert_eq!(response.into_string().unwrap(), "Hello World!".to_string());
     }
 }
