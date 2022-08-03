@@ -1,3 +1,4 @@
 services:
   home_api:
+    image: commnerd/home_api:latest
     build: .
