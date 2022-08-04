@@ -1,4 +1,5 @@
 #[macro_use] extern crate rocket;
+#[macro_use] mod macros;
 
 use rocket::launch;
 

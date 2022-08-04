@@ -4,5 +4,5 @@ mod ep;
 
 pub fn bootstrap(rkt: Box<Rocket<Build>>) -> Rocket<Build>
 {
-    rkt.mount("/test", routes![ep::ep])
+    endpoint!(rkt, "/test", routes![ep::ep])
 }
