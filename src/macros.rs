@@ -3,6 +3,6 @@ macro_rules! endpoint{
         endpoint!($first, $second, routes![$third])
     };
     ($first: expr, $second: expr, $third: expr)=>{
-        $first.mount($second, $third)
+        $first = Box::new($first.mount($second, $third))
     };
 }

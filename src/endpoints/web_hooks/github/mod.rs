@@ -1,8 +1,11 @@
-use rocket::{Rocket, Build, routes};
+use rocket::{Rocket, Build};
 
 mod ep;
+mod push;
 
-pub fn bootstrap(rkt: Box<Rocket<Build>>) -> Rocket<Build>
+pub fn bootstrap(mut rkt: Box<Rocket<Build>>) -> Rocket<Build>
 {
-    endpoint!(rkt, "/test", routes![ep::ep])
+    endpoint!(rkt, "/test", ep::ep);
+    endpoint!(rkt, "/push", push::push);
+    *rkt
 }
